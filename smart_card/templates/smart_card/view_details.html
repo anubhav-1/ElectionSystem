@@ -1,0 +1,233 @@
+<!--By: Anubhav Gupta-->
+{% load static %}
+<!DOCTYPE html>
+<html >
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Identification Details</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+   <style>
+
+
+       /*By: Anubhav Gupta*/
+@import url(https://fonts.googleapis.com/css?family=Patua+One|Open+Sans);
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background: #262728;
+}
+tr{
+  width: auto;
+}
+
+#main {
+  width: 50%;
+}
+
+table {
+
+  border-collapse: separate;
+  background: #fff;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin: 50px auto;
+  -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 4px 5px #bccce5;
+}
+
+thead {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+thead th {
+  font-family: 'Patua One', cursive;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  padding: 20px;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY0NmY3ZiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzRhNTU2NCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #646f7f), color-stop(100%, #4a5564));
+  background-image: -moz-linear-gradient(#646f7f, #4a5564);
+  background-image: -webkit-linear-gradient(#646f7f, #4a5564);
+  background-image: linear-gradient(#646f7f, #4a5564);
+  border-top: 1px solid #858d99;
+}
+thead th:first-child {
+  -moz-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+thead th:last-child {
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+tbody tr td {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color: #5f6062;
+  font-size: 13px;
+  padding: 20px 20px 20px 20px;
+  border-bottom: 1px solid #e0e0e0;
+
+}
+
+tbody tr:nth-child(2n) {
+  background: #f0f3f5;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+tbody tr:last-child td:first-child {
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+tbody tr:last-child td:last-child {
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+tbody:hover > tr td {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+  /* uncomment for blur effect */
+  /* color:transparent;
+  @include text-shadow(0px 0px 2px rgba(0,0,0,0.8));*/
+}
+
+tbody:hover > tr:hover td {
+  text-shadow: none;
+  color: #2d2d2d;
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+  box-shadow: 4px 4px 5px #bccce5;
+}
+
+tbody:hover > tr:hover{
+  box-shadow: 0 5px 5px -5px #a1a2a3;
+  text-shadow: 1px 1px 1px 1px white;
+}
+   </style>
+
+  
+</head>
+
+<body>
+  <table id="main">
+    <thead>
+        <tr>
+            <th colspan="2" style="text-align: center;">Identification Details</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+    {% for x in query %}
+        <tr>
+                <td>First Name:</td>
+                <td>{{ x.first_name }}</td>
+            </tr>
+            <tr>
+                <td>Last Name: </td>
+                <td>{{ x.last_name }}</td>
+            </tr>
+            <tr>
+                <td>Father's Name:</td>
+                <td>{{ x.fathers_name }}</td>
+            </tr>
+            <tr>
+                <td>Mother's Name:</td>
+                <td>{{ x.mothers_name }}</td>
+            </tr>
+            <tr>
+                <td>Date Of Birth (yy/mm/dd):</td>
+                <td>{{ x.dob }}</td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td>{{ x.gender }}</td>
+            </tr>
+            <tr>
+                <td>Phone No:</td>
+                <td>{{ x.phone_number }}</td>
+            </tr>
+            <tr>
+                <td>E-mail Address:</td>
+                <td>{{ x.email }}</td>
+            </tr>
+            <tr>
+                <td>PAN No:</td>
+                <td>{{ x.pan }}</td>
+            </tr>
+            {% endfor %}
+
+{% for con in country %}
+            <tr>
+                <td>Country:</td>
+                <td>{{ con.country_name }}</td>
+            </tr>
+{% endfor %}
+{% for state in state %}
+            <tr>
+                <td>State:</td>
+                <td>{{ state.state_name }}</td>
+            </tr>
+{% endfor %}
+{% for dis in district %}
+            <tr>
+                <td>District:</td>
+                <td>{{ dis.district_name }}</td>
+            </tr>
+{% endfor %}
+{% for teh in tehsil %}            
+            <tr>
+                <td>Tehsil:</td>
+                <td>{{ teh.tehsil_name }}</td>
+            </tr>
+{% endfor %}
+{% for g in gram %}            
+            <tr>
+                <td>Gram Panchayat/Ward:</td>
+                <td>{{ g.gram_panchayat_name }}</td>
+            </tr>
+{% endfor %}
+{% for y in query %}            
+            <tr>
+                <td>House No:</td>
+                <td>{{ y.housenum}}</td>
+            </tr>
+            <tr>
+                <td>Street No/Village Name: </td>
+                <td>{{y.streetnum }}</td>
+            </tr>
+            <tr>
+                <td>Pin Code:</td>
+                <td>{{ y.postalnum }}</td>
+            </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+  
+    
+</body>
+</html>

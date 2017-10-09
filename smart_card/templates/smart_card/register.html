@@ -1,0 +1,241 @@
+<!--By: Anubhav Gupta-->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <script type="text/javascript">
+        function getDistricts(value) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    document.getElementById('district').disabled = false;
+                    document.getElementById('tehsil').disabled = true;
+                    document.getElementById('gram_panchayat').disabled = true;
+                    html = ''
+                    for (i = 0; i < myObj.length; i++) {
+                        var html = html + '<option value=\"' + myObj[i].district_id + '\">' + myObj[i].district_name + '</option>';
+                    }
+                    document.getElementById('district').innerHTML = html;
+                }
+            };
+            xmlhttp.open("GET", "/smart_card/get_districts/?state_id=01" + value, true);
+            xmlhttp.send();
+        }
+
+        function getTehsils() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    document.getElementById('tehsil').disabled = false;
+                    document.getElementById('gram_panchayat').disabled = true;
+                    var html = ''
+                    for (i = 0; i < myObj.length; i++) {
+                        html = html + '<option value=\"' + myObj[i].tehsil_id + '\">' + myObj[i].tehsil_name + '</option>';
+                    }
+                    document.getElementById('tehsil').innerHTML = html;
+                }
+            };
+            var url = "/smart_card/get_tehsils/";
+            url += "?country_id=01&";
+            url += "state_id=" + document.getElementById("state").value + "&";
+            url += "district_id=" + document.getElementById("district").value;
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }
+
+        function getGramPanchayats() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    document.getElementById('gram_panchayat').disabled = false;
+                    var html = ''
+                    for (i = 0; i < myObj.length; i++) {
+                        html = html + '<option value=\"' + myObj[i].gram_panchayat_id + '\">' + myObj[i].gram_panchayat_name + '</option>';
+                    }
+                    document.getElementById('gram_panchayat').innerHTML = html;
+                }
+            };
+            var url = "/smart_card/get_gram_panchayats/";
+            url += "?country_id=01&";
+            url += "state_id=" + document.getElementById("state").value + "&";
+            url += "district_id=" + document.getElementById("district").value + "&";
+            url += "tehsil_id=" + document.getElementById("tehsil").value;
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }
+
+    function alphabet()
+    {
+        if (!frm.fname.value.match(/^[a-zA-Z]+$/) && frm.fname.value !="")
+        {
+            frm.fname.value="";
+            frm.fname.focus();
+            alert("Please enter only alphabets in text");
+        }
+        if (!frm.mname.value.match(/^[a-zA-Z]+$/) && frm.mname.value !="")
+        {
+            frm.mname.value="";
+            frm.mname.focus();
+            alert("Please enter only alphabets in text");
+        }
+
+        if (!frm.lname.value.match(/^[a-zA-Z]+$/) && frm.lname.value !="")
+        {
+            frm.lname.value="";
+            frm.lname.focus();
+            alert("Please enter only alphabets in text");
+        }
+        if (!frm.faname.value.match(/^[a-zA-Z ]+$/) && frm.faname.value !="")
+        {
+            frm.faname.value="";
+            frm.faname.focus();
+            alert("Please enter only alphabets in text");
+        }
+        if (!frm.moname.value.match(/^[a-zA-Z ]+$/) && frm.moname.value !="")
+        {
+            frm.moname.value="";
+            frm.moname.focus();
+            alert("Please enter only alphabets in text");
+        }
+
+    }
+    function AllowNumber()
+    {
+        if (!frm.cnumber.value.match(/^[0-9+-]+$/) && frm.cnumber.value != "") {
+            frm.cnumber.value = "";
+            frm.cnumber.focus();
+            alert("Please enter valid phone number");
+        }
+        if (!frm.pnum.value.match(/^[0-9]+$/) && frm.pnum.value != "") {
+            frm.pnum.value = "";
+            frm.pnum.focus();
+            alert("Please enter valid postal address");
+        }
+    }
+
+
+    </script>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<body>
+<div class="container-fluid">
+    <h1><center>Registration Form</center></h1>
+</div>
+<hr>
+<div class="container">
+<form name="frm" action="do_register/" method="POST">{% csrf_token %}
+  <div class="form-group">
+    <label for="fname">First Name</label>
+        <input  name="fname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter first name" required>
+  </div>
+  <div class="form-group">
+      <label for="mname">Middle Name</label>
+        <input name="mname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Middle name">
+  </div>
+
+    <div class="form-group">
+      <label for="lname">Last Name</label>
+        <input name="lname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter last name">
+  </div>
+    <legend>Gender</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="gender" id="optionsRadios1" value="Male" checked>
+        Male
+      </label>
+    </div>
+    <div class="form-check">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="gender" id="optionsRadios2" value="Female">
+        Female
+      </label>
+    </div>
+    <div class="form-check">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="gender" id="optionsRadios2" value="Other">
+        Other
+      </label>
+    </div>
+<br>
+<!--<div class="form-group">
+      <label>Date of Birth</label>
+      <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Date of Birth">
+    </div>-->
+  <div class="form-group">
+    <label for="faname">Father's Name / Guardian Name</label>
+        <input  name="faname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Father's name">
+  </div>
+  <div class="form-group">
+    <label for="fname">Mother's Name / Guardian Name</label>
+        <input  name="moname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Mother's name" >
+  </div>
+    <div class="form-group">
+    <label for="fname">Date of Birth</label>
+        <input  name="dob" type="date" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="D.O.B." required>
+  </div>
+  <div class="form-group">
+    <label for="cnumber">Phone Number</label>
+        <input  name="cnumber" type="text" class="form-control" id="exampleInputEmail1" onkeyup="AllowNumber()" placeholder="Enter Phone Number" required>
+  </div>
+   <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+   </div>
+   <div class="form-group">
+    <label for="Pan">PAN Number</label>
+        <input  name="Pan" style="text-transform: uppercase;" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter PAN Number" required>
+  </div>
+   <div class="form-group">
+    <label for="Country">Country</label>
+        <input  name="Country" type="text" class="form-control" value="India" id="exampleInputEmail1" readonly>
+  </div>
+    <div class="form-group">
+      <label for="state">State :</label>
+      <select class="form-control" id="state" name="state" onchange="getDistricts(this.value)">
+
+          {% for foo in sta %}
+
+                 <option value="{{ foo.state_id }}"> {{ foo.state_name }} </option>
+          {% endfor %}
+
+
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="district">District :</label>
+      <select class="form-control" name="district" id="district" onchange="getTehsils()" disabled>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="tehsil">Tehsil :</label>
+      <select class="form-control" name="tehsil" id="tehsil" onchange="getGramPanchayats()" disabled>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="gram_panchayat">Gram Panchayat / Ward :</label>
+      <select class="form-control" name="gram_panchayat" id="gram_panchayat" disabled>
+      </select>
+    </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">House Number</label>
+    <input type="text" name="hnum" class="form-control" id="exampleInputEmail1" required>
+   </div>
+   <div class="form-group">
+    <label for="address">Street Number / Village Name</label>
+        <input type="text" name="sname" class="form-control" id="exampleInputEmail1">
+   </div>
+   <div class="form-group">
+   <label for="address">PIN Code</label>
+        <input type="text" name="pnum" class="form-control" id="exampleInputEmail1" onkeyup="AllowNumber()" required>
+   </div>
+
+
+   <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</body>
+</html>

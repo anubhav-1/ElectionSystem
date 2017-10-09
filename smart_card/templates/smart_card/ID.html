@@ -1,0 +1,86 @@
+<!--By: Anubhav Gupta-->
+{% load static %}
+<html>
+	<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+		td{
+			font-family: "calibri";
+			font-size: 20;
+		}
+		table{
+			border:1px solid black;
+		}
+		#pic1{
+			width:36px;
+			height:61px;
+		}
+		#pic2{
+			width:294px;
+			height:69px;
+            padding-left: 15%;
+		}
+		#pic3{
+			width:54px;
+			height:67px;
+		}
+		#pic4{
+			width:92px;
+			height:90px;
+		}
+		</style>
+	</head>
+	<body>
+
+    <div style="box-shadow: 1.5px 1.5px 1.5px 1.5px #555555; height: 500px" id="main">
+        <center>
+ <h1> Registration Successful</h1> <br>
+<hr>
+<p> Your Generated ID is : <span style="color:red; font-size: 1.7em;"> {{ ID }}</span></p>
+
+        <br><br>
+        <table height=248 width=418>
+			<tr>
+                <td height=72 width=60><img id="pic1" src="{% static 'smart_card/images/Gov.png' %}" ></td>
+				<td height=72 width=200><img id="pic2" src="{% static 'smart_card/images/tricolor2.JPG' %}" ></td>
+			</tr>
+			<tr>
+				<td colspan="2">Name: {{name}}</td>
+				<td rowspan="6" ><img id="pic4" src="{% static 'smart_card/images/qrcode.png' %}" ></td>
+			</tr>
+			<tr>
+                <td colspan="2">Father's name: {{fathers_name}}</td>
+			</tr>
+			<tr>
+                <td colspan="2">Gender: {{gender}}</td>
+			</tr>
+            <tr>
+                <td colspan="2">Date of Birth: {{dob}}</td>
+			</tr>
+			<tr>
+				<td colspan="2"></td>
+			</tr>
+		    <tr>
+                <td colspan="3" align="center"><b>{{ID}}</b></td>
+			</tr>
+		</table>
+
+        <br>
+         Password : <span style="font-size: 1.5em; color: red"> {{password}}</span>
+             </center>
+    </div>
+    <br><br><br>
+<center>
+
+    <input type="button" onclick="myfunction()" value = "Click Here to print the page">
+</center>
+
+	</body>
+
+<script>
+
+    function myfunction() {
+        window.print();
+    }
+</script>
+</html>

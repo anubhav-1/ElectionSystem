@@ -1,0 +1,37 @@
+Country_ID,State,State_ID
+1,Andhra Pradesh,1
+1,Andaman and Nicobar Islands,0
+1,Arunachal Pradesh,2
+1,Assam,3
+1,Bihar,4
+1,Chandigarh,5
+1,Chhattisgarh,6
+1,Dadra and Nagar Haveli,7
+1,Daman and Diu,8
+1,Delhi,9
+1,Goa,A
+1,Gujarat,B
+1,Haryana,C
+1,Himachal Pradesh,D
+1,Jammu and Kashmir,E
+1,Jharkhand,F
+1,Karnataka,G
+1,Kerala,H
+1,Lakshadweep,I
+1,Madhya Pradesh,J
+1,Maharashtra,K
+1,Manipur,L
+1,Meghalaya,M
+1,Mizoram,N
+1,Nagaland,O
+1,Odisha,P
+1,Puducherry,Q
+1,Punjab,R
+1,Rajasthan,S
+1,Sikkim,T
+1,Tamil Nadu,U
+1,Telangana,V
+1,Tripura,W
+1,Uttar Pradesh,X
+1,Uttarakhand,Y
+1,West Bengal,Z
