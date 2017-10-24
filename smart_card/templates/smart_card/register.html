@@ -1,8 +1,38 @@
 <!--By: Anubhav Gupta-->
 <html>
 <head>
+    <script>
+
+        var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    }
+    if(mm<10){
+        mm='0'+mm
+    }
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("datefield").setAttribute("max", today);
+
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
+
+    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+<!-- polyfiller file to detect and load polyfills -->
+<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+<script>
+
+
+
+  webshims.setOptions('waitReady', false);
+  webshims.setOptions('forms-ext', {types: 'date'});
+  webshims.polyfill('forms forms-ext');
+</script>
+
     <script type="text/javascript">
         function getDistricts(value) {
             var xmlhttp = new XMLHttpRequest();
@@ -69,6 +99,7 @@
 
     function alphabet()
     {
+
         if (!frm.fname.value.match(/^[a-zA-Z]+$/) && frm.fname.value !="")
         {
             frm.fname.value="";
@@ -160,10 +191,7 @@
       </label>
     </div>
 <br>
-<!--<div class="form-group">
-      <label>Date of Birth</label>
-      <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Date of Birth">
-    </div>-->
+
   <div class="form-group">
     <label for="faname">Father's Name / Guardian Name</label>
         <input  name="faname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Father's name">
@@ -174,7 +202,7 @@
   </div>
     <div class="form-group">
     <label for="fname">Date of Birth</label>
-        <input  name="dob" type="date" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="D.O.B." required>
+        <input  name="dob" type="date" class="form-control" id="datefield" onkeyup="alphabet()" placeholder="D.O.B." required max="">
   </div>
   <div class="form-group">
     <label for="cnumber">Phone Number</label>
